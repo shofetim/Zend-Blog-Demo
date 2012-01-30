@@ -12,8 +12,8 @@ $template =
 
 foreach ($this->Posts as $post) {
   printf($template, 
-         $post->title, $post->created, $post->content, 
-         $post->id, $post->author_id, $post->author_id);
+         $post['title'], $post['created'], $post['content'], 
+         $post['id'], $post['author_id'], $post['author']['first_name']);
 }
 
 ?>

@@ -6,18 +6,18 @@ class PostsController extends Zend_Controller_Action {
   }
 
   public function indexAction() {
-    $this->view->Posts = $this->Post->fetchAll();
+    $this->view->Posts = $this->Post->getAll();
   }
 
   public function view($id) {
-    $this->view->Post = $this->Post->fetchOne($id);
+    $this->view->Post = $this->Post->getOne($id);
   }
 
   public function add() {
   }
 
   public function edit($id) {
-    $this->view->Post = $this->Post->fetchOne($id);
+    $this->view->Post = $this->Post->getOne($id);
   }
 
   public function delete($id) {
