@@ -30,7 +30,10 @@ class Application_Model_Post extends Zend_Db_Table_Abstract {
   public function getOne() {
   }
 
-  public function delete() {
+  public function delete($id) {
+  }
+
+  public function save($data) {
   }
 
 }

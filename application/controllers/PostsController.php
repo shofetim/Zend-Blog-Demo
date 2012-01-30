@@ -9,11 +9,12 @@ class PostsController extends Zend_Controller_Action {
     $this->view->Posts = $this->Post->getAll();
   }
 
-  public function view($id) {
-    $this->view->Post = $this->Post->getOne($id);
+  public function add() {
+    
   }
 
-  public function add() {
+  public function view($id) {
+    $this->view->Post = $this->Post->getOne($id);
   }
 
   public function edit($id) {
