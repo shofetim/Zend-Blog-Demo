@@ -1,1 +1,21 @@
 <h1>Hello World</h1>
+
+<?php
+$template =
+'<article class="post">
+  <h2>%s</h2>
+  <time>%s</time>
+  <p>%s</p>
+  <a href="%s" class="read-more">Read More</a>
+  <a href="%s" rel="author">%s</a>
+</article>';
+
+foreach ($this->Posts as $post) {
+  printf($template, 
+         $post->title, $post->created, $post->content, 
+         $post->id, $post->author_id, $post->author_id);
+}
+
+?>
+
+
