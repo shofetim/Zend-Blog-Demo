@@ -28,7 +28,22 @@ class Application_Model_Post extends Zend_Db_Table_Abstract {
     return $final;
   }
 
-  public function getOne() {
+  public function getOne($slug) {
+    $select = $this->db->select()->from('posts')->where("slug = '$slug'");
+    $post = array_pop($this->db->query($select)->fetchAll());
+    $select = $this->db->select()->from('authors')->where("id = '$post[author_id]'");
+    $author = array_pop($this->db->query($select)->fetchAll());
+    $post['author'] = $author;
+    $select = $this->db->select()->from('comments')->where("post_id = '$post[id]'");
+    $comments = $this->db->query($select)->fetchAll();
+    $tmp = array();
+    foreach ($comments as $comment) {
+      $select = $this->db->select()->from('authors')->where("id = '$comment[author_id]'");
+      $comment['author'] = array_pop($this->db->query($select)->fetchAll());
+      $tmp[] = $comment;
+    }
+    $post['comments'] = $tmp;
+    return $post;
   }
 
   public function delete($id) {

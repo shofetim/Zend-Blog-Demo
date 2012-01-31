@@ -22,8 +22,9 @@ class PostsController extends Zend_Controller_Action {
     $this->view->form = $form;
   }
 
-  public function viewAction($id) {
-    $this->view->Post = $this->Post->getOne($id);
+  public function viewAction() {
+    $request = $this->getRequest()->getRequestUri();
+    $this->view->Post = $this->Post->getOne($this->getParm($request));
   }
 
   public function editAction($id) {
@@ -34,4 +35,7 @@ class PostsController extends Zend_Controller_Action {
     $this->Post->delete($id);
   }
 
+  private function getParm($str) {
+    return substr($str, (strrpos($str, '/') + 1));
+  }
 }
