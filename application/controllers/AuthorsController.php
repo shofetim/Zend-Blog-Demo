@@ -13,4 +13,19 @@ class AuthorsController extends Zend_Controller_Action {
   private function getParm($str) {
     return substr($str, (strrpos($str, '/') + 1));
   }
+
+  public function loginAction() {
+    $request = $this->getRequest();
+    $form = new Application_Form_Login();
+    
+    if ($this->getRequest()->isPost()) {
+      if ($form->isValid($request->getPost())) {
+        $author = $this->Author->getLookup($form->getValues());
+        Zend_Registry::set('author', $author);
+        return $this->_helper->redirector('index', 'posts');
+      }
+    }
+    $this->view->form = $form;
+  }
+
 }
