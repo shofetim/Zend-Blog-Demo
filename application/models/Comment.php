@@ -15,11 +15,8 @@ class Application_Model_Comment extends Zend_Db_Table_Abstract {
     }
     if (empty($data['id'])) {
       $data['id'] = Crypto::uuid();
-      $action = 'insert';
-    } else {
-      $action = 'update';
     }
-    return $this->$action($data);
+    return $this->insert($data);
   }
 
 }
