@@ -5,6 +5,7 @@ class Application_Model_Post extends Zend_Db_Table_Abstract {
 
   public function init() {
     $this->db = Zend_Registry::get('db');
+    require dirname(__FILE__) . '/../utils/Crypto.php';
   }
   
   public function getAll() {
@@ -34,8 +35,24 @@ class Application_Model_Post extends Zend_Db_Table_Abstract {
   }
 
   public function save($data) {
+    if (empty($data['author_id'])) {
+      $data['author_id'] = '8f010c4c-4b75-11e1-9c18-14dae9cb5ac0';
+    }
+    if (empty($data['slug'])) {
+      $data['slug'] = $this->makeSlug($data['title']);
+    }
+    if (empty($data['id'])) {
+      $data['id'] = Crypto::uuid();
+      $action = 'insert';
+    } else {
+      $action = 'update';
+    }
+    return $this->$action($data);
   }
 
+  public function makeSlug($titleStr) {
+    return str_replace(' ', '-', $titleStr);
+  }
 }
 
 ?>

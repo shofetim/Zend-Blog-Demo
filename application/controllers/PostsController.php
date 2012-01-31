@@ -9,19 +9,28 @@ class PostsController extends Zend_Controller_Action {
     $this->view->Posts = $this->Post->getAll();
   }
 
-  public function add() {
+  public function addAction() {
+    $request = $this->getRequest();
+    $form = new Application_Form_Post();
     
+    if ($this->getRequest()->isPost()) {
+      if ($form->isValid($request->getPost())) {
+        $this->Post->save($form->getValues());
+        return $this->_helper->redirector('index');
+      }
+    }
+    $this->view->form = $form;
   }
 
-  public function view($id) {
+  public function viewAction($id) {
     $this->view->Post = $this->Post->getOne($id);
   }
 
-  public function edit($id) {
+  public function editAction($id) {
     $this->view->Post = $this->Post->getOne($id);
   }
 
-  public function delete($id) {
+  public function deleteAction($id) {
     $this->Post->delete($id);
   }
 
