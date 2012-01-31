@@ -16,7 +16,9 @@ class CommentsController extends Zend_Controller_Action {
     if ($this->getRequest()->isPost()) {
       if ($form->isValid($request->getPost())) {
         $this->Comment->save($form->getValues());
-        return $this->_helper->redirector('view', 'posts', $postId);
+        $data = $form->getValues();
+        $post = $this->Post->getById($data['post_id']);
+        return $this->_helper->redirector->gotoUrl('/posts/view/' . $post['slug']);
       }
     }
     $this->view->form = $form;
