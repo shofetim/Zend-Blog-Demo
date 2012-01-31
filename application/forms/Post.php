@@ -18,6 +18,7 @@ class Application_Form_Post extends Zend_Form {
                             'required'   => true,
                             )
                       );
+    $this->addElement('hidden', 'id');
     $this->addElement('submit',
                       'submit',
                       array(

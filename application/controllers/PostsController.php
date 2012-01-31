@@ -28,8 +28,6 @@ class PostsController extends Zend_Controller_Action {
   }
 
   public function editAction() {
-    $request = $this->getRequest()->getRequestUri();
-    $post = $this->Post->getOne($this->getParm($request));
     $request = $this->getRequest();
     $form = new Application_Form_Post();
     if ($this->getRequest()->isPost()) {
@@ -38,6 +36,8 @@ class PostsController extends Zend_Controller_Action {
         return $this->_helper->redirector('index');
       }
     } else {
+      $requestUri = $this->getRequest()->getRequestUri();
+      $post = $this->Post->getOne($this->getParm($requestUri));
       $form->populate($post);
     }
     $this->view->form = $form;

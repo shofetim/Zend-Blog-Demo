@@ -13,7 +13,7 @@ class Application_Model_Post extends Zend_Db_Table_Abstract {
     //We could use joins, but this is better. 
     //Better for clarity, better for scale, etc. 
     //(it probably deserves a blog post of its own :)
-    $posts = $this->fetchAll();
+    $posts = $this->fetchAll($this->select()->order('created DESC'));
     $finall = array();
     foreach ($posts as $post) {
       $tmp = $post->toArray();
@@ -67,11 +67,20 @@ class Application_Model_Post extends Zend_Db_Table_Abstract {
     }
     if (empty($data['id'])) {
       $data['id'] = Crypto::uuid();
-      $action = 'insert';
+      $this->db->beginTransaction();
+      try {
+        $this->db->insert('posts', $data);
+        $this->db->query('UPDATE authors SET `number_of_posts` = (`number_of_posts` + 1) ' .
+                         'WHERE id = \'' . $data['author_id'] . '\'');
+        $this->db->commit();
+      } catch (Exception $e) {
+        $this->db->rollBack();
+        echo $e->getMessage();
+      }
+      return true;
     } else {
-      $action = 'update';
+      $this->db->update('posts', $data, 'id = \'' . $data['id'] . '\'');
     }
-    return $this->$action($data);
   }
 
   public function makeSlug($titleStr) {
