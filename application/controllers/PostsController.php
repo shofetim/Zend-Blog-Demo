@@ -29,7 +29,18 @@ class PostsController extends Zend_Controller_Action {
 
   public function editAction() {
     $request = $this->getRequest()->getRequestUri();
-    $this->view->Post = $this->Post->getOne($this->getParm($request));
+    $post = $this->Post->getOne($this->getParm($request));
+    $request = $this->getRequest();
+    $form = new Application_Form_Post();
+    if ($this->getRequest()->isPost()) {
+      if ($form->isValid($request->getPost())) {
+        $this->Post->save($form->getValues());
+        return $this->_helper->redirector('index');
+      }
+    } else {
+      $form->populate($post);
+    }
+    $this->view->form = $form;
   }
 
   public function deleteAction() {
