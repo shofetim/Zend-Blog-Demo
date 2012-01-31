@@ -27,8 +27,9 @@ class PostsController extends Zend_Controller_Action {
     $this->view->Post = $this->Post->getOne($this->getParm($request));
   }
 
-  public function editAction($id) {
-    $this->view->Post = $this->Post->getOne($id);
+  public function editAction() {
+    $request = $this->getRequest()->getRequestUri();
+    $this->view->Post = $this->Post->getOne($this->getParm($request));
   }
 
   public function deleteAction() {

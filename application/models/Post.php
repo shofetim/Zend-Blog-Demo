@@ -5,7 +5,7 @@ class Application_Model_Post extends Zend_Db_Table_Abstract {
 
   public function init() {
     $this->db = Zend_Registry::get('db');
-    require dirname(__FILE__) . '/../utils/Crypto.php';
+    require_once dirname(__FILE__) . '/../utils/Crypto.php';
   }
   
   public function getAll() {
@@ -43,6 +43,12 @@ class Application_Model_Post extends Zend_Db_Table_Abstract {
       $tmp[] = $comment;
     }
     $post['comments'] = $tmp;
+    return $post;
+  }
+
+  public function getById($id) {
+    $select = $this->db->select()->from('posts')->where("id = '$id'");
+    $post = array_pop($this->db->query($select)->fetchAll());
     return $post;
   }
 
