@@ -46,3 +46,44 @@ body {
 .topbar .btn {
     border: 0;
 }
+
+article.post {
+    position: relative;
+    margin-top: 40px;
+    border-bottom: 1px solid black;
+    padding-bottom: 5px;
+}
+
+article.post time {
+    position: absolute;
+    right: 20px;
+    top: 0px;
+}
+
+article.post a.read-more {
+
+}
+
+article.post a[rel="author"] {
+    font-style: oblique;
+}
+
+div.comments {
+    margin-top: 40px;
+}
+
+div.comments section {
+    margin-bottom: 10px;
+}
+div.comments section a {
+    color: #57A957;
+    font-style: oblique;
+}
+
+#body-element textarea {
+    width: 600px;
+}
+#submit-element input {
+    position: relative;
+    left: 645px;
+}

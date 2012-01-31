@@ -4,14 +4,14 @@ $template =
   <h2>%s</h2>
   <time>%s</time>
   <p>%s</p>
-  <a href="%s" class="read-more">Read More</a>
-  <a href="%s" rel="author">%s</a>
+  <a href="/posts/view/%s" class="read-more">Read More</a>
+  <p>Posted By: <a href="%s" rel="author">%s</a></p>
 </article>';
 
 foreach ($this->Posts as $post) {
   printf($template, 
          $post['title'], $post['created'], $post['content'], 
-         $post['id'], $post['author_id'], $post['author']['first_name']);
+         $post['slug'], $post['author_id'], $post['author']['first_name']);
 }
 
 ?>

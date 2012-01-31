@@ -16,7 +16,8 @@ class Application_Form_Comment extends Zend_Form {
                       'submit',
                       array(
                             'ignore'   => true,
-                            'label'    => 'Post!',
+                            'label'    => 'Comment!',
+                            'class'    => 'btn success'
                             )
                       );
 
