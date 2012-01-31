@@ -66,6 +66,12 @@ article.post .blog-edit {
     top: 20px;
 }
 
+article.post .blog-delete {
+    position: absolute;
+    right: 20px;
+    top: 37px;
+}
+
 article.post a.read-more {
 
 }
