@@ -14,6 +14,10 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap {
                                                     )
                                               );
     Zend_Controller_Front::getInstance()->getRouter()->addRoute('/', $route);
+
+    //If someone is logged in, set them in the registry
+    $session = new Zend_Session_Namespace();
+    Zend_Registry::set('author', @$_SESSION['author']);
   }
 
 }
