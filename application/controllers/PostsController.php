@@ -31,8 +31,9 @@ class PostsController extends Zend_Controller_Action {
     $this->view->Post = $this->Post->getOne($id);
   }
 
-  public function deleteAction($id) {
-    $this->Post->delete($id);
+  public function deleteAction() {
+    $request = $this->getRequest()->getRequestUri();
+    return $this->_helper->redirector('index');
   }
 
   private function getParm($str) {

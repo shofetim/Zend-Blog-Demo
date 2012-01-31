@@ -47,6 +47,8 @@ class Application_Model_Post extends Zend_Db_Table_Abstract {
   }
 
   public function delete($id) {
+    $this->db->query("DELETE FROM posts WHERE id = '$id'");
+    return true;
   }
 
   public function save($data) {
