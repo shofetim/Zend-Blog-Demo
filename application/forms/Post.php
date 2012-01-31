@@ -22,7 +22,8 @@ class Application_Form_Post extends Zend_Form {
                       'submit',
                       array(
                             'ignore'   => true,
-                            'label'    => 'Post!',
+                            'label'    => 'Post it!',
+                            'class'    => 'btn success'
                             )
                       );
 

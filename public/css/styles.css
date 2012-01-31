@@ -86,9 +86,16 @@ div.comments section a {
     font-style: oblique;
 }
 
-#body-element textarea {
+#body-element textarea,
+#content-element textarea,
+#title-element input {
     width: 600px;
 }
+
+#title-element input {
+    margin-bottom: 15px;
+}
+
 #submit-element input {
     position: relative;
     left: 645px;
