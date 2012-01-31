@@ -1,4 +1,4 @@
-DROP TABLE posts;
+DROP TABLE IF EXISTS posts;
 CREATE TABLE  `posts` (       
   `id` CHAR(36) PRIMARY KEY,
   `title` VARCHAR(100),
@@ -8,7 +8,7 @@ CREATE TABLE  `posts` (
   `content` TEXT
 ) ENGINE=InnoDB, COLLATE=utf8_general_ci;
 
-DROP TABLE comments;
+DROP TABLE IF EXISTS comments;
 CREATE TABLE  `comments` (       
   `id` CHAR(36) PRIMARY KEY,
   `author_id` CHAR(36),
@@ -16,7 +16,7 @@ CREATE TABLE  `comments` (
   `body` TEXT
 ) ENGINE=InnoDB, COLLATE=utf8_general_ci;
 
-DROP TABLE authors;
+DROP TABLE IF EXISTS authors;
 CREATE TABLE  `authors` (       
   `id` CHAR(36) PRIMARY KEY,
   `first_name` VARCHAR(100),
