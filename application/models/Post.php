@@ -52,8 +52,9 @@ class Application_Model_Post extends Zend_Db_Table_Abstract {
   }
 
   public function save($data) {
+    $author = Zend_Registry::get('author');
     if (empty($data['author_id'])) {
-      $data['author_id'] = '8f010c4c-4b75-11e1-9c18-14dae9cb5ac0';
+      $data['author_id'] = $author['id'];
     }
     if (empty($data['slug'])) {
       $data['slug'] = $this->makeSlug($data['title']);
