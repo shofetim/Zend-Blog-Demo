@@ -60,6 +60,12 @@ article.post time {
     top: 0px;
 }
 
+article.post .blog-edit {
+    position: absolute;
+    right: 20px;
+    top: 20px;
+}
+
 article.post a.read-more {
 
 }
@@ -86,4 +92,8 @@ div.comments section a {
 #submit-element input {
     position: relative;
     left: 645px;
+}
+
+a#front {
+    margin-top: 20px;
 }
