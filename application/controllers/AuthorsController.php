@@ -21,7 +21,7 @@ class AuthorsController extends Zend_Controller_Action {
     if ($this->getRequest()->isPost()) {
       if ($form->isValid($request->getPost())) {
         $author = $this->Author->getLookup($form->getValues());
-        Zend_Registry::set('author', $author);
+        $_SESSION['author'] = $author;
         return $this->_helper->redirector('index', 'posts');
       }
     }
