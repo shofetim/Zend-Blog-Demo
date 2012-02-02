@@ -1,0 +1,6 @@
+* Zend Blog Demo
+  - Demo it at [[http://demo3.noionlabs.com][demo3.noionlabs.com]]
+  - It requires a recent version of the Zend Framework library, and expect it to
+    be at ../Zend/
+  - Database setup is in /setup
+  - Video showing of its features is [[http://vimeo.com/35938463][here]]
